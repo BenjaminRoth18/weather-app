@@ -1,0 +1,14 @@
+$black: #111;
+
+ActionBar {
+  background: $black;
+  color: #fff;
+}
+
+.app {
+  background-color: $black;
+
+  Stacklayout {
+    background: red;
+  }
+}

@@ -1,0 +1,8 @@
+*.js
+*.js.map
+*.log
+app/*.js
+*.d.ts
+*.idea
+node_modules
+platforms

@@ -1,0 +1,42 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" *ngIf="isActive" [text]="weather?.location"></Label>
+    <ActionItem (tap)="onSetCurrentLocation()" ios.systemIcon="13" ios.position="right" android.systemIcon="ic_menu_mylocation"></ActionItem>
+    <ActionItem (tap)="onReset()" ios.systemIcon="16" ios.position="right" android.systemIcon="ic_menu_close_clear_cancel"></ActionItem>
+</ActionBar>
+
+<StackLayout orientation="vertical" class="app">
+
+    <StackLayout orientation="vertical" *ngIf="!isActive">
+        <TextField class="input input-border" id="addLocation" hint="Focused TextField" text="" row="1" col="1"></TextField>
+        <Button text="Click me" (tap)="onAddLocation($event)"></Button>
+    </StackLayout>
+
+    <StackLayout orientation="vertical" *ngIf="isActive">
+        <StackLayout orientation="vertical">
+            <Label [text]="'wi-forecast-io-' + weather?.icon | fonticon" class="wi icon"></Label>
+        </StackLayout>
+
+        <StackLayout orientation="vertical">
+            <Label [text]="weather?.temperature + '&deg;C'"></Label>
+        </StackLayout>
+
+        <StackLayout orientation="vertical" class="forecast">
+            <Label [text]="tomorrow?.day"></Label>
+            <Label [text]="tomorrow?.temperatureHigh + '&deg;C'"></Label>
+            <Label [text]="tomorrow?.temperatureLow + '&deg;C'"></Label>
+            <Label [text]="'wi-forecast-io-' + tomorrow?.icon | fonticon" class="wi icon"></Label>
+        </StackLayout>
+        <StackLayout orientation="vertical" class="forecast">
+            <Label [text]="day3?.day"></Label>
+            <Label [text]="day3?.temperatureHigh + '&deg;C'"></Label>
+            <Label [text]="day3?.temperatureLow + '&deg;C'"></Label>
+            <Label [text]="'wi-forecast-io-' + day3?.icon | fonticon" class="wi icon"></Label>
+        </StackLayout>
+        <StackLayout orientation="vertical" class="forecast">
+            <Label [text]="day4?.day"></Label>
+            <Label [text]="day4?.temperatureHigh + '&deg;C'"></Label>
+            <Label [text]="day4?.temperatureLow + '&deg;C'"></Label>
+            <Label [text]="'wi-forecast-io-' + day4?.icon | fonticon" class="wi icon"></Label>
+        </StackLayout>
+    </StackLayout>
+</StackLayout>
