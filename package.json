@@ -21,6 +21,7 @@
 		"@angular/http": "4.4.6",
 		"@angular/platform-browser": "4.4.6",
 		"@angular/router": "4.4.6",
+		"moment": "^2.20.1",
 		"nativescript-angular": "4.4.1",
 		"nativescript-geolocation": "^4.2.2",
 		"nativescript-loading-indicator": "^2.4.0",

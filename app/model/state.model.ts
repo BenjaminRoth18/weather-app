@@ -1,9 +1,16 @@
-import { Forecast, WeatherModel } from './weather.model';
+import { ForecastItem, WeatherModel } from './weather.model';
 
 export interface State {
     weather: WeatherModel;
-    tomorrow: Forecast;
-    day3: Forecast;
-    day4: Forecast;
+    forecast: Forecast;
     isActive: boolean;
+}
+
+export interface Forecast {
+    day1: ForecastItem,
+    day2: ForecastItem,
+    day3: ForecastItem,
+    day4: ForecastItem,
+    day5: ForecastItem,
+    day6: ForecastItem
 }

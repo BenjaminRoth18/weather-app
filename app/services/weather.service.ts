@@ -1,16 +1,17 @@
-import { Forecast, WeatherModel } from '../model/weather.model';
+import { ForecastItem, WeatherModel } from '../model/weather.model';
 import { State } from '../model/state.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as ApplicationSettings from 'application-settings'
 import { getCurrentLocation } from 'nativescript-geolocation';
 import { LoadingIndicator } from 'nativescript-loading-indicator';
 import { LoaderOptions } from '../shared/loader';
+import moment = require('moment');
 
 const loader = new LoadingIndicator();
 const http = require("http");
 
 const DARKSKY_API_KEY = '6b77036350146f797b1fbbf2a0d78ee5';
-const GOOGLEMAPS_API_KEY = 'AIzaSyC-j3mgUwYIcy3vKp1RDDpKcdG-Z9z88SU'
+const GOOGLEMAPS_API_KEY = 'AIzaSyC-j3mgUwYIcy3vKp1RDDpKcdG-Z9z88SU';
 
 export class WeatherService {
     forecastURL: string = 'https://api.darksky.net/forecast/';
@@ -22,52 +23,74 @@ export class WeatherService {
     stateSubject: BehaviorSubject<State>;
 
     state: State = {
-        weather: new WeatherModel('Search location', 20, 'clear-day'),
-        tomorrow: new Forecast(new Date(), 40 , 4, 'clear-day'),
-        day3: new Forecast(new Date(), 40, 6, 'clear-day'),
-        day4: new Forecast(new Date(), 40, 8, 'clear-day'),
+        weather: new WeatherModel('Search location', 20, 'clear-day', { clear: true }),
+        forecast: {
+            day1: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
+            day2: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
+            day3: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
+            day4: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
+            day5: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
+            day6: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
+        },
         isActive: false
     };
 
     getWeatherData() {
-        const queryURL = 'https://api.darksky.net/forecast/' + DARKSKY_API_KEY + '/' + this.latitude + ',' + this.longitude + '?units=si';
+        // const queryURL = 'https://api.darksky.net/forecast/' + DARKSKY_API_KEY + '/' + this.latitude + ',' + this.longitude + '?units=si';
 
         if (ApplicationSettings.hasKey('data')) {
             this.stateSubject.next(JSON.parse(ApplicationSettings.getString('data')));
         } else {
             http.getJSON('https://api.myjson.com/bins/kc6rv') // https://api.myjson.com/bins/kc6rv
                 .then((response) => {
-                    const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-                    const dateTomorrow = new Date(response.daily.data[0].time * 1000);
-                    const dateTomorrowDay = weekdays[dateTomorrow.getDay()];
-                    const dateDay2 = new Date(response.daily.data[1].time * 1000);
-                    const dateDay2Day = weekdays[dateDay2.getDay()];
-                    const dateDay3 = new Date(response.daily.data[2].time * 1000);
-                    const dateDay3Day = weekdays[dateDay3.getDay()];
+                    const style = {
+                        clear: false
+                    };
+
+                    switch (response.currently.temperature > 0) {
+                        case true:
+                            style.clear = true;
+                            break;
+                    }
 
                     this.state = Object.assign({}, this.state, {
                         weather: new WeatherModel(
                             this.location,
                             Math.floor(response.currently.temperature),
-                            response.currently.icon),
-                        tomorrow:
-                            new Forecast(
-                                dateTomorrowDay,
+                            response.currently.icon,
+                            style),
+                        forecast: {
+                            day1: new ForecastItem(
+                                moment.unix(response.daily.data[0].time).hours(24).format('dddd'),
                                 Math.floor(response.daily.data[0].temperatureHigh),
                                 Math.floor(response.daily.data[0].temperatureLow),
                                 response.daily.data[0].icon),
-                        day3:
-                            new Forecast(
-                                dateDay2Day,
+                            day2: new ForecastItem(
+                                moment.unix(response.daily.data[0].time).hours(48).format('dddd'),
                                 Math.floor(response.daily.data[1].temperatureHigh),
                                 Math.floor(response.daily.data[1].temperatureLow),
                                 response.daily.data[1].icon),
-                        day4:
-                            new Forecast(
-                                dateDay3Day,
+                            day3: new ForecastItem(
+                                moment.unix(response.daily.data[0].time).hours(72).format('dddd'),
                                 Math.floor(response.daily.data[2].temperatureHigh),
                                 Math.floor(response.daily.data[2].temperatureLow),
                                 response.daily.data[2].icon),
+                            day4: new ForecastItem(
+                                moment.unix(response.daily.data[0].time).hours(96).format('dddd'),
+                                Math.floor(response.daily.data[3].temperatureHigh),
+                                Math.floor(response.daily.data[3].temperatureLow),
+                                response.daily.data[3].icon),
+                            day5: new ForecastItem(
+                                moment.unix(response.daily.data[0].time).hours(120).format('dddd'),
+                                Math.floor(response.daily.data[4].temperatureHigh),
+                                Math.floor(response.daily.data[4].temperatureLow),
+                                response.daily.data[5].icon),
+                            day6: new ForecastItem(
+                                moment.unix(response.daily.data[0].time).hours(144).format('dddd'),
+                                Math.floor(response.daily.data[5].temperatureHigh),
+                                Math.floor(response.daily.data[5].temperatureLow),
+                                response.daily.data[1].icon),
+                        },
                         isActive: true
                     });
 
@@ -137,4 +160,6 @@ export class WeatherService {
         }
         return this.stateSubject;
     }
+
+
 }

@@ -7,6 +7,8 @@ import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home.component";
 
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
+import { WeatherComponent } from './weather/weather.component';
+import { ForecastComponent } from './forecast/forecast.component';
 
 @NgModule({
     imports: [
@@ -18,7 +20,9 @@ import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
         })
     ],
     declarations: [
-        HomeComponent
+        HomeComponent,
+        WeatherComponent,
+        ForecastComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
