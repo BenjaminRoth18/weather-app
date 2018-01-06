@@ -1,9 +1,10 @@
-<Page *ngIf="weather.active">
+<Page *ngIf="weather.active" xmlns:android="" xmlns:ios="">
     <ActionBar [ngClass]="weather.style.color">
         <SearchBar hint="Search location" id="addLocation" (submit)="onAddLocation($event)"></SearchBar>
-        <ActionItem (tap)="onSetCurrentLocation()" ios.position="right">
+        <ActionItem (tap)="onSetCurrentLocation()" ios.position="right" android:visibility="collapsed">
             <Label [text]="'fa-map-marker' | fonticon" class="fa"></Label>
-        </ActionItem>>
+        </ActionItem>
+        <ActionItem (tap)="onSetCurrentLocation()" android.systemIcon="ic_menu_mylocation" ios:visibility="collapsed"></ActionItem>
     </ActionBar>
 
     <StackLayout class="app-main" [ngClass]="weather.style.color">

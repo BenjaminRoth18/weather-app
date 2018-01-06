@@ -10,6 +10,10 @@ ActionBar {
   background: $COL_DEFAULT;
 }
 
+SearchBar {
+  background: $COL_WHITE;
+}
+
 Label {
   color: $COL_WHITE;
   font-size: 20;
@@ -35,6 +39,10 @@ Label {
 
 .rain {
   background: $COL_RAIN;
+}
+
+.partly-cloudy-day {
+  background: $COL_PARTLY-CLOUDY-DAY;
 }
 
 .snow {

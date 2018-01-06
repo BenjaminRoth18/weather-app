@@ -64,6 +64,10 @@ export class WeatherService {
                             style.color = 'rain';
                             break;
 
+                        case 'partly-cloudy-day':
+                            style.color = 'partly-cloudy-day';
+                            break;
+
                         case 'snow':
                             style.color = 'snow';
                             break;

@@ -6,9 +6,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { WeatherService } from './services/weather.service';
 
-import { registerElement } from "nativescript-angular";
-registerElement("Gradient", () => require("nativescript-gradient").Gradient);
-
 @NgModule({
     bootstrap: [
         AppComponent
