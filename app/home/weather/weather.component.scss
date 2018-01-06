@@ -1,19 +1,40 @@
-Label {
+@import '../../colors';
+@import '../../global';
+
+.block-info {
+  margin: 0 0 10 -10;
+
+  Label {
+    color: $COL_WHITE;
+
+    &.icon {
+      font-size: 18;
+      margin: 2 3 0 10;
+    }
+
+    &.divide {
+      margin: 0 0 2 10;
+      opacity: 0.3;
+    }
+  }
+}
+
+.block-current-weather {
   text-align: center;
-}
 
-.icon {
-  font-size: 150px;
-  font-weight: bold;
-  text-align: center;
-}
+  .headline-location {
+    color: $COL_WHITE;
+    font-size: 40;
+    margin: 0 0 10 0;
+  }
 
-.temperature {
-  font-size: 60px;
-}
+  .temperature {
+    color: $COL_WHITE;
+    font-size: 100;
+    font-weight: 300;
+  }
 
-.location {
-  display : block;
-  font-size: 20px;
-  margin: 100px 0;
+  .icon {
+    font-size: 40;
+  }
 }

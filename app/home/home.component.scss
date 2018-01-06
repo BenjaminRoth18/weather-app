@@ -1,3 +1,42 @@
-.active {
-  background: #FFE226;
+@import '../colors';
+@import '../global';
+
+.app-main {
+  background: $COL_DEFAULT;
+  padding: 40 20;
+}
+
+ActionBar {
+  background: $COL_DEFAULT;
+}
+
+Label {
+  color: $COL_WHITE;
+  font-size: 20;
+  display: block;
+  padding: 20 10;
+}
+
+.default {
+  background: $COL_DEFAULT;
+}
+
+.cloudy {
+  background: $COL_CLOUDY;
+}
+
+.clear-day {
+  background: $COL_CLEAR;
+}
+
+.clear-night {
+  background: $COL_NIGHT;
+}
+
+.rain {
+  background: $COL_RAIN;
+}
+
+.snow {
+  background: $COL_SNOW;
 }

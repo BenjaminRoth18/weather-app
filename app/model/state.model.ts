@@ -3,7 +3,6 @@ import { ForecastItem, WeatherModel } from './weather.model';
 export interface State {
     weather: WeatherModel;
     forecast: Forecast;
-    isActive: boolean;
 }
 
 export interface Forecast {

@@ -16,7 +16,8 @@ import { ForecastComponent } from './forecast/forecast.component';
         HomeRoutingModule,
         NativeScriptFormsModule,
         TNSFontIconModule.forRoot({
-            'wi': './css/weather/weather-icons.css'
+            'fa': './plugins/font-awesome/css/font-awesome.css',
+            'wi': './plugins/weather/css/weather-icons.css'
         })
     ],
     declarations: [

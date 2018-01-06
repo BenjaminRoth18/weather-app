@@ -5,7 +5,7 @@ import * as ApplicationSettings from 'application-settings'
 import { getCurrentLocation } from 'nativescript-geolocation';
 import { LoadingIndicator } from 'nativescript-loading-indicator';
 import { LoaderOptions } from '../shared/loader';
-import moment = require('moment');
+import moment = require('moment-timezone');
 
 const loader = new LoadingIndicator();
 const http = require("http");
@@ -23,7 +23,7 @@ export class WeatherService {
     stateSubject: BehaviorSubject<State>;
 
     state: State = {
-        weather: new WeatherModel('Search location', 20, 'clear-day', { clear: true }),
+        weather: new WeatherModel(new Date(), '', 20, 1509967519, 1510003982, 'clear-day', { color: 'cloudy' }, false),
         forecast: {
             day1: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
             day2: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
@@ -31,34 +31,57 @@ export class WeatherService {
             day4: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
             day5: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
             day6: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
-        },
-        isActive: false
+        }
     };
 
     getWeatherData() {
-        // const queryURL = 'https://api.darksky.net/forecast/' + DARKSKY_API_KEY + '/' + this.latitude + ',' + this.longitude + '?units=si';
+        const queryURL = 'https://api.darksky.net/forecast/' + DARKSKY_API_KEY + '/' + this.latitude + ',' + this.longitude + '?units=si';
 
         if (ApplicationSettings.hasKey('data')) {
             this.stateSubject.next(JSON.parse(ApplicationSettings.getString('data')));
         } else {
-            http.getJSON('https://api.myjson.com/bins/kc6rv') // https://api.myjson.com/bins/kc6rv
+            http.getJSON(queryURL) // https://api.myjson.com/bins/1da7w3
                 .then((response) => {
-                    const style = {
-                        clear: false
-                    };
 
-                    switch (response.currently.temperature > 0) {
-                        case true:
-                            style.clear = true;
+                    const style = {
+                        color: 'clear-day'
+                    }
+
+                    switch (response.currently.icon) {
+                        case 'cloudy':
+                            style.color = 'cloudy';
                             break;
+
+                        case 'clear-day':
+                            style.color = 'clear-day';
+                            break;
+
+                        case 'clear-night':
+                            style.color = 'clear-night';
+                            break;
+
+                        case 'rain':
+                            style.color = 'rain';
+                            break;
+
+                        case 'snow':
+                            style.color = 'snow';
+                            break;
+
+                        default:
+                            style.color = 'default';
                     }
 
                     this.state = Object.assign({}, this.state, {
                         weather: new WeatherModel(
+                            moment().format('dddd'),
                             this.location,
                             Math.floor(response.currently.temperature),
+                            moment.unix(response.daily.data[0].sunriseTime).tz(response.timezone).format('HH:mm'),
+                            moment.unix(response.daily.data[0].sunsetTime).tz(response.timezone).format('HH:mm'),
                             response.currently.icon,
-                            style),
+                            style,
+                            true),
                         forecast: {
                             day1: new ForecastItem(
                                 moment.unix(response.daily.data[0].time).hours(24).format('dddd'),
@@ -90,13 +113,11 @@ export class WeatherService {
                                 Math.floor(response.daily.data[5].temperatureHigh),
                                 Math.floor(response.daily.data[5].temperatureLow),
                                 response.daily.data[1].icon),
-                        },
-                        isActive: true
+                        }
                     });
 
                     this.stateSubject.next(this.state);
                     ApplicationSettings.setString('data', JSON.stringify(this.state));
-                    console.log(JSON.stringify(this.state));
                     loader.hide();
                 });
         }
@@ -108,13 +129,9 @@ export class WeatherService {
 
     getLocation()  {
         ApplicationSettings.clear();
-        console.log('Get location started!');
-        console.log('Latitude:' + this.latitude + ' Longitude: ' + this.longitude);
-
         http.getJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng='+ this.latitude + ',' + this.longitude + '&key='+ GOOGLEMAPS_API_KEY)
             .then((data) => {
-                console.log(JSON.stringify(data.results[0].formatted_address));
-                this.location = data.results[0].formatted_address;
+                this.location = data.results[0].address_components[3].long_name;
             });
     }
 
@@ -135,11 +152,9 @@ export class WeatherService {
     }
 
     resetLocation() {
-        console.log('Delete!');
         ApplicationSettings.clear();
         this.state = Object.assign({}, this.state, { isActive: false });
         this.stateSubject.next(this.state);
-        console.log(JSON.stringify(this.state));
     }
 
     setLocation(location) {

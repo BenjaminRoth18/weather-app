@@ -1,3 +1,13 @@
-<Label [text]="'wi-forecast-io-' + weather?.icon | fonticon" class="wi icon"></Label>
-<Label [text]="weather?.temperature + '&deg;C'" class="temperature"></Label>
-<Label [text]="weather?.location" class="location"></Label>
+<StackLayout class="block-current-weather">
+    <WrapLayout horizontalAlignment="center" class="block-info">
+        <Label [text]="'wi-sunrise' | fonticon" class="wi icon"></Label>
+        <Label [text]="weather.sunrise"></Label>
+        <Label text="|" class="divide"></Label>
+        <Label [text]="'wi-sunset' | fonticon" class="wi icon"></Label>
+        <Label [text]="weather.sunset"></Label>
+    </WrapLayout>
+
+    <Label [text]="weather?.location" class="headline-location"></Label>
+    <Label [text]="weather?.temperature + '&deg;'" class="temperature"></Label>
+    <Label [text]="'wi-forecast-io-' + weather?.icon | fonticon" [class]="'wi icon ' + weather?.icon"></Label>
+</StackLayout>

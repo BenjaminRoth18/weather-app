@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ForecastItem } from '../../model/weather.model';
 
 @Component({
     selector: "Forecast",

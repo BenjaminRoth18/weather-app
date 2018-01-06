@@ -1,30 +1,31 @@
-<Label [text]="forecast?.day1.day"></Label>
-<Label [text]="forecast?.day1.temperatureHigh + '&deg;C'"></Label>
-<Label [text]="forecast?.day1.temperatureLow + '&deg;C'"></Label>
-<Label [text]="'wi-forecast-io-' + forecast?.day1.icon | fonticon" class="wi icon"></Label>
-<Label text="----------"></Label>
-<Label [text]="forecast?.day2.day"></Label>
-<Label [text]="forecast?.day2.temperatureHigh + '&deg;C'"></Label>
-<Label [text]="forecast?.day2.temperatureLow + '&deg;C'"></Label>
-<Label [text]="'wi-forecast-io-' + forecast?.day2.icon | fonticon" class="wi icon"></Label>
-<Label text="----------"></Label>
-<Label [text]="forecast?.day3.day"></Label>
-<Label [text]="forecast?.day3.temperatureHigh + '&deg;C'"></Label>
-<Label [text]="forecast?.day3.temperatureLow + '&deg;C'"></Label>
-<Label [text]="'wi-forecast-io-' + forecast?.day3.icon | fonticon" class="wi icon"></Label>
-<Label text="----------"></Label>
-<Label [text]="forecast?.day4.day"></Label>
-<Label [text]="forecast?.day4.temperatureHigh + '&deg;C'"></Label>
-<Label [text]="forecast?.day4.temperatureLow + '&deg;C'"></Label>
-<Label [text]="'wi-forecast-io-' + forecast?.day4.icon | fonticon" class="wi icon"></Label>
-<Label text="----------"></Label>
-<Label [text]="forecast?.day5.day"></Label>
-<Label [text]="forecast?.day5.temperatureHigh + '&deg;C'"></Label>
-<Label [text]="forecast?.day5.temperatureLow + '&deg;C'"></Label>
-<Label [text]="'wi-forecast-io-' + forecast?.day5.icon | fonticon" class="wi icon"></Label>
-<Label text="----------"></Label>
-<Label [text]="forecast?.day6.day"></Label>
-<Label [text]="forecast?.day6.temperatureHigh + '&deg;C'"></Label>
-<Label [text]="forecast?.day6.temperatureLow + '&deg;C'"></Label>
-<Label [text]="'wi-forecast-io-' + forecast?.day6.icon | fonticon" class="wi icon"></Label>
-<Label text="----------"></Label>
+<GridLayout columns="180, auto, *, *" rows="auto,auto,auto,auto,auto,auto">
+    <Label [text]="forecast?.day1.day" col="0" row="0" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.day1.icon | fonticon" col="1" row="0" [class]="'wi icon ' + forecast?.day1.icon"></Label>
+    <Label [text]="forecast?.day1.temperatureHigh + '&deg;C'" col="2" row="0" class="temperature"></Label>
+    <Label [text]="forecast?.day1.temperatureLow + '&deg;C'" col="3" row="0" class="temperature"></Label>
+
+    <Label [text]="forecast?.day2.day" col="0" row="1" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.day2.icon | fonticon" col="1" row="1" [class]="'wi icon ' + forecast?.day2.icon"></Label>
+    <Label [text]="forecast?.day2.temperatureHigh + '&deg;C'" col="2" row="1" class="temperature"></Label>
+    <Label [text]="forecast?.day2.temperatureLow + '&deg;C'" col="3" row="1" class="temperature"></Label>
+
+    <Label [text]="forecast?.day3.day" col="0" row="2" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.day3.icon | fonticon" col="1" row="2" [class]="'wi icon ' + forecast?.day3.icon"></Label>
+    <Label [text]="forecast?.day3.temperatureHigh + '&deg;C'" col="2" row="2" class="temperature"></Label>
+    <Label [text]="forecast?.day3.temperatureLow + '&deg;C'" col="3" row="2" class="temperature"></Label>
+
+    <Label [text]="forecast?.day4.day" col="0" row="3" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.day3.icon | fonticon" col="1" row="3" [class]="'wi icon ' + forecast?.day4.icon"></Label>
+    <Label [text]="forecast?.day4.temperatureHigh + '&deg;C'" col="2" row="3" class="temperature"></Label>
+    <Label [text]="forecast?.day4.temperatureLow + '&deg;C'" col="3" row="3" class="temperature"></Label>
+
+    <Label [text]="forecast?.day5.day" col="0" row="4" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.day2.icon | fonticon" col="1" row="4" [class]="'wi icon ' + forecast?.day5.icon"></Label>
+    <Label [text]="forecast?.day5.temperatureHigh + '&deg;C'" col="2" row="4" class="temperature"></Label>
+    <Label [text]="forecast?.day5.temperatureLow + '&deg;C'" col="3" row="4" class="temperature"></Label>
+
+    <Label [text]="forecast?.day6.day" col="0" row="5" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.day2.icon | fonticon" col="1" row="5" [class]="'wi icon ' + forecast?.day6.icon"></Label>
+    <Label [text]="forecast?.day6.temperatureHigh + '&deg;C'" col="2" row="5" class="temperature"></Label>
+    <Label [text]="forecast?.day6.temperatureLow + '&deg;C'" col="3" row="5" class="temperature"></Label>
+</GridLayout>
