@@ -6,7 +6,7 @@ export class WeatherModel {
         public sunrise: any,
         public sunset: any,
         public icon: string,
-        public style: Style,
+        public style: string,
         public active: boolean
     ) {}
 }
@@ -18,8 +18,4 @@ export class ForecastItem {
         public temperatureLow: number,
         public icon: string
     ) {}
-}
-
-export interface Style {
-    color: string
 }

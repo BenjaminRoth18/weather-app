@@ -5,6 +5,7 @@ import { NSModuleFactoryLoader } from "nativescript-angular/router";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { WeatherService } from './services/weather.service';
+import { SettingsService } from './services/settings.service';
 
 @NgModule({
     bootstrap: [
@@ -19,6 +20,7 @@ import { WeatherService } from './services/weather.service';
     ],
     providers: [
         WeatherService,
+        SettingsService,
         { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
     ],
     schemas: [

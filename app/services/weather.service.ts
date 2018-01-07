@@ -6,6 +6,8 @@ import { getCurrentLocation } from 'nativescript-geolocation';
 import { LoadingIndicator } from 'nativescript-loading-indicator';
 import { LoaderOptions } from '../shared/loader';
 import moment = require('moment-timezone');
+import { SettingsService } from './settings.service';
+import { Injectable } from '@angular/core';
 
 const loader = new LoadingIndicator();
 const http = require("http");
@@ -13,6 +15,7 @@ const http = require("http");
 const DARKSKY_API_KEY = '6b77036350146f797b1fbbf2a0d78ee5';
 const GOOGLEMAPS_API_KEY = 'AIzaSyC-j3mgUwYIcy3vKp1RDDpKcdG-Z9z88SU';
 
+@Injectable()
 export class WeatherService {
     forecastURL: string = 'https://api.darksky.net/forecast/';
     googleGeocodeURL: string = 'https://maps.googleapis.com/maps/api/geocode/json?latlng';
@@ -23,7 +26,7 @@ export class WeatherService {
     stateSubject: BehaviorSubject<State>;
 
     state: State = {
-        weather: new WeatherModel(new Date(), '', 20, 1509967519, 1510003982, 'clear-day', { color: 'cloudy' }, false),
+        weather: new WeatherModel(new Date(), '', 20, 1509967519, 1510003982, 'clear-day', 'cloudy', false),
         forecast: {
             day1: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
             day2: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
@@ -34,6 +37,8 @@ export class WeatherService {
         }
     };
 
+    constructor(private settingsService: SettingsService) {}
+
     getWeatherData() {
         const queryURL = 'https://api.darksky.net/forecast/' + DARKSKY_API_KEY + '/' + this.latitude + ',' + this.longitude + '?units=si';
 
@@ -42,40 +47,6 @@ export class WeatherService {
         } else {
             http.getJSON(queryURL) // https://api.myjson.com/bins/1da7w3
                 .then((response) => {
-
-                    const style = {
-                        color: 'clear-day'
-                    }
-
-                    switch (response.currently.icon) {
-                        case 'cloudy':
-                            style.color = 'cloudy';
-                            break;
-
-                        case 'clear-day':
-                            style.color = 'clear-day';
-                            break;
-
-                        case 'clear-night':
-                            style.color = 'clear-night';
-                            break;
-
-                        case 'rain':
-                            style.color = 'rain';
-                            break;
-
-                        case 'partly-cloudy-day':
-                            style.color = 'partly-cloudy-day';
-                            break;
-
-                        case 'snow':
-                            style.color = 'snow';
-                            break;
-
-                        default:
-                            style.color = 'default';
-                    }
-
                     this.state = Object.assign({}, this.state, {
                         weather: new WeatherModel(
                             moment().format('dddd'),
@@ -84,36 +55,36 @@ export class WeatherService {
                             moment.unix(response.daily.data[0].sunriseTime).tz(response.timezone).format('HH:mm'),
                             moment.unix(response.daily.data[0].sunsetTime).tz(response.timezone).format('HH:mm'),
                             response.currently.icon,
-                            style,
+                            this.settingsService.getStyle(response.currently.icon),
                             true),
                         forecast: {
                             day1: new ForecastItem(
-                                moment.unix(response.daily.data[0].time).hours(24).format('dddd'),
+                                moment.unix(response.daily.data[0].time).tz(response.timezone).hours(24).format('dddd'),
                                 Math.floor(response.daily.data[0].temperatureHigh),
                                 Math.floor(response.daily.data[0].temperatureLow),
                                 response.daily.data[0].icon),
                             day2: new ForecastItem(
-                                moment.unix(response.daily.data[0].time).hours(48).format('dddd'),
+                                moment.unix(response.daily.data[0].time).tz(response.timezone).hours(48).format('dddd'),
                                 Math.floor(response.daily.data[1].temperatureHigh),
                                 Math.floor(response.daily.data[1].temperatureLow),
                                 response.daily.data[1].icon),
                             day3: new ForecastItem(
-                                moment.unix(response.daily.data[0].time).hours(72).format('dddd'),
+                                moment.unix(response.daily.data[0].time).tz(response.timezone).hours(72).format('dddd'),
                                 Math.floor(response.daily.data[2].temperatureHigh),
                                 Math.floor(response.daily.data[2].temperatureLow),
                                 response.daily.data[2].icon),
                             day4: new ForecastItem(
-                                moment.unix(response.daily.data[0].time).hours(96).format('dddd'),
+                                moment.unix(response.daily.data[0].time).tz(response.timezone).hours(96).format('dddd'),
                                 Math.floor(response.daily.data[3].temperatureHigh),
                                 Math.floor(response.daily.data[3].temperatureLow),
                                 response.daily.data[3].icon),
                             day5: new ForecastItem(
-                                moment.unix(response.daily.data[0].time).hours(120).format('dddd'),
+                                moment.unix(response.daily.data[0].time).tz(response.timezone).hours(120).format('dddd'),
                                 Math.floor(response.daily.data[4].temperatureHigh),
                                 Math.floor(response.daily.data[4].temperatureLow),
                                 response.daily.data[5].icon),
                             day6: new ForecastItem(
-                                moment.unix(response.daily.data[0].time).hours(144).format('dddd'),
+                                moment.unix(response.daily.data[0].time).tz(response.timezone).hours(144).format('dddd'),
                                 Math.floor(response.daily.data[5].temperatureHigh),
                                 Math.floor(response.daily.data[5].temperatureLow),
                                 response.daily.data[1].icon),
