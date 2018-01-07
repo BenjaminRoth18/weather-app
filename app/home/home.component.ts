@@ -32,8 +32,6 @@ export class HomeComponent implements OnInit {
 
         ApplicationSettings.clear();
 
-        this.weatherService.getWeatherData();
-
         this.weatherService.getState().subscribe(state => {
             this.weather = state.weather;
             this.forecast = state.forecast;

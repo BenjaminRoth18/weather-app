@@ -126,12 +126,6 @@ export class WeatherService {
             });
     }
 
-    resetLocation() {
-        ApplicationSettings.clear();
-        this.state = Object.assign({}, this.state, { isActive: false });
-        this.stateSubject.next(this.state);
-    }
-
     setLocation(location) {
         ApplicationSettings.clear();
         loader.show(LoaderOptions);
