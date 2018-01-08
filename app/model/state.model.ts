@@ -1,6 +1,7 @@
 import { ForecastItem, WeatherModel } from './weather.model';
 
 export interface State {
+    loader: any;
     weather: WeatherModel;
     forecast: Forecast;
 }

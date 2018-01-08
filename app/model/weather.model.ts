@@ -3,6 +3,7 @@ export class WeatherModel {
         public date: any,
         public location: string,
         public temperature: number,
+        public summary: string,
         public sunrise: any,
         public sunset: any,
         public icon: string,

@@ -8,6 +8,7 @@
     </WrapLayout>
 
     <Label [text]="weather?.location" class="headline-location"></Label>
+    <Label [text]="weather?.summary" class="summary"></Label>
     <Label [text]="weather?.temperature + '&deg;'" class="temperature"></Label>
     <Label [text]="'wi-forecast-io-' + weather?.icon | fonticon" [class]="'wi icon ' + weather?.icon"></Label>
 </StackLayout>

@@ -25,7 +25,11 @@
   .headline-location {
     color: $COL_WHITE;
     font-size: 40;
-    margin: 0 0 5 0;
+  }
+
+  .summary {
+    color: $COL_WHITE;
+    margin-bottom: 10;
   }
 
   .temperature {

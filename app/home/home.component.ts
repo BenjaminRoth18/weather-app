@@ -5,6 +5,10 @@ import { WeatherService } from '../services/weather.service';
 import { ForecastItem, WeatherModel } from '../model/weather.model';
 import * as ApplicationSettings from 'application-settings';
 import { enableLocationRequest } from "nativescript-geolocation";
+import { LoadingIndicator } from 'nativescript-loading-indicator';
+import { LoaderOptions } from '../shared/loader';
+
+const loader = new LoadingIndicator();
 
 @Component({
     selector: "Home",
@@ -35,6 +39,12 @@ export class HomeComponent implements OnInit {
         this.weatherService.getState().subscribe(state => {
             this.weather = state.weather;
             this.forecast = state.forecast;
+
+            if(state.loader === true) {
+                loader.show(LoaderOptions);
+            } else {
+                loader.hide();
+            }
         });
     }
 
