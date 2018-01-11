@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from "@angular/core";
 import { Page } from "ui/page";
 import { TextField } from "ui/text-field";
 import { WeatherService } from '../services/weather.service';
@@ -8,6 +8,9 @@ import { enableLocationRequest } from "nativescript-geolocation";
 import { LoadingIndicator } from 'nativescript-loading-indicator';
 import { LoaderOptions } from '../shared/loader';
 
+import { RadSideDrawerComponent } from "nativescript-pro-ui/sidedrawer/angular";
+import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
+
 const loader = new LoadingIndicator();
 
 @Component({
@@ -16,8 +19,19 @@ const loader = new LoadingIndicator();
     templateUrl: "./home.component.html",
     styleUrls: ['home.component.css']
 })
-export class HomeComponent implements OnInit {
-    constructor(private weatherService: WeatherService, private page: Page) {}
+export class HomeComponent implements OnInit, AfterViewInit {
+    constructor(private weatherService: WeatherService,
+                private page: Page,
+                private _changeDetectionRef: ChangeDetectorRef
+    ) {}
+
+    @ViewChild(RadSideDrawerComponent) public drawerComponent: RadSideDrawerComponent;
+    private drawer: RadSideDrawer;
+
+    ngAfterViewInit() {
+        this.drawer = this.drawerComponent.sideDrawer;
+        this._changeDetectionRef.detectChanges();
+    }
 
     weather: WeatherModel;
     forecast: {
@@ -28,6 +42,7 @@ export class HomeComponent implements OnInit {
         day5: ForecastItem,
         day6: ForecastItem
     };
+    locations: string[];
 
     ngOnInit() {
         enableLocationRequest().then(() => {
@@ -39,6 +54,7 @@ export class HomeComponent implements OnInit {
         this.weatherService.getState().subscribe(state => {
             this.weather = state.weather;
             this.forecast = state.forecast;
+            this.locations = state.locations
 
             if(state.loader === true) {
                 loader.show(LoaderOptions);
@@ -48,6 +64,10 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    openDrawer() {
+        this.drawer.showDrawer();
+    }
+
     onSetCurrentLocation() {
         this.weatherService.getCurrentLocation();
     }
@@ -55,6 +75,7 @@ export class HomeComponent implements OnInit {
     onAddLocation() {
         const location = this.page.getViewById<TextField>("addLocation");
         this.weatherService.setLocation(encodeURI(location.text));
+        this.weatherService.addLocations(location.text);
     }
 
     onRefresh() {

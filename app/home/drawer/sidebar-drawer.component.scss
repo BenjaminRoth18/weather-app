@@ -1,0 +1,28 @@
+@import '../../colors';
+
+.btn-close {
+  color: $COL_WHITE;
+  font-size: 30;
+  padding: 35 10 30 20;
+  text-align: left;
+}
+
+.headline {
+  color: $COL_WHITE;
+  font-size: 15;
+  font-weight: 600;
+  margin-bottom: 10;
+  padding: 0 20;
+  text-transform: uppercase;
+}
+
+ListView {
+  background: $COL_BLACK;
+
+  Label {
+    color: $COL_WHITE;
+    font-size: 20;
+    padding: 10 20;
+  }
+}
+

@@ -4,15 +4,20 @@ import { NativeScriptFormsModule } from "nativescript-angular/forms"
 import { Http } from '@angular/http';
 
 import { HomeRoutingModule } from "./home-routing.module";
-import { HomeComponent } from "./home.component";
 
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
+
+import { SidebarDrawerComponent } from './drawer/sidebar-drawer.component';
+import { HomeComponent } from './home.component';
 import { WeatherComponent } from './weather/weather.component';
 import { ForecastComponent } from './forecast/forecast.component';
+
+import { NativeScriptUISideDrawerModule } from 'nativescript-pro-ui/sidedrawer/angular';
 
 @NgModule({
     imports: [
         NativeScriptCommonModule,
+        NativeScriptUISideDrawerModule,
         HomeRoutingModule,
         NativeScriptFormsModule,
         TNSFontIconModule.forRoot({
@@ -21,6 +26,7 @@ import { ForecastComponent } from './forecast/forecast.component';
         })
     ],
     declarations: [
+        SidebarDrawerComponent,
         HomeComponent,
         WeatherComponent,
         ForecastComponent

@@ -1,0 +1,10 @@
+<Label [text]="'fa-angle-left' | fonticon" class="fa btn-close" (tap)="onCloseDrawerTap()"></Label>
+
+<StackLayout *ngIf="locations.length > 0">
+    <Label text="Latest locations" class="headline"></Label>
+    <ListView [items]="locations" (itemTap)="onItemTap($event)" separatorColor="transparent">
+        <ng-template let-item="item" let-i="index">
+            <Label [text]="item" (tap)="onLoadLocation(item)"></Label>
+        </ng-template>
+    </ListView>
+</StackLayout>

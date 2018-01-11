@@ -1,20 +1,30 @@
-<Page *ngIf="weather.active" xmlns:android="" xmlns:ios="">
-    <ActionBar [ngClass]="weather.style">
-        <SearchBar hint="Search location" id="addLocation" (submit)="onAddLocation($event)"></SearchBar>
-        <ActionItem (tap)="onSetCurrentLocation()" ios.position="right" android:visibility="collapsed">
-            <Label [text]="'fa-map-marker' | fonticon" class="fa"></Label>
-        </ActionItem>
-
-        <ActionItem (tap)="onRefresh()" ios.position="right" android:visibility="collapsed" *ngIf="weather.location">
-            <Label [text]="'fa-refresh' | fonticon" class="fa"></Label>
-        </ActionItem>
-        <ActionItem (tap)="onSetCurrentLocation()" android.systemIcon="ic_menu_mylocation" ios:visibility="collapsed"></ActionItem>
-    </ActionBar>
-
-    <StackLayout class="app-main" [ngClass]="weather.style">
-        <FlexboxLayout flexDirection="column" justifyContent="space-between" alignItems="center" height="100%">
-            <Weather [weather]="weather" row="0"></Weather>
-            <Forecast [forecast]="forecast" row="2"></Forecast>
-        </FlexboxLayout>
+<RadSideDrawer tkExampleTitle tkToggleNavButton showOverNavigation="true" drawerTransition="PushTransition">
+    <StackLayout tkDrawerContent class="drawer">
+        <SidebarDrawer [drawer]="drawer" [locations]="locations"></SidebarDrawer>
     </StackLayout>
-</Page>
+    <StackLayout tkMainContent>
+        <Page *ngIf="weather.active" xmlns:android="" xmlns:ios="">
+            <ActionBar [ngClass]="weather.style">
+                <ActionItem (tap)="openDrawer()" ios.position="left" android:visibility="collapsed" *ngIf="locations.length > 0">
+                    <Label [text]="'fa-bars' | fonticon" class="fa btn-menu"></Label>
+                </ActionItem>
+                <SearchBar hint="Search location" id="addLocation" (submit)="onAddLocation($event)"></SearchBar>
+                <ActionItem (tap)="onSetCurrentLocation()" ios.position="right" android:visibility="collapsed">
+                    <Label [text]="'fa-map-marker' | fonticon" class="fa btn-location"></Label>
+                </ActionItem>
+
+                <ActionItem (tap)="onRefresh()" ios.position="right" android:visibility="collapsed" *ngIf="weather.location">
+                    <Label [text]="'fa-refresh' | fonticon" class="fa btn-refresh"></Label>
+                </ActionItem>
+                <ActionItem (tap)="onSetCurrentLocation()" android.systemIcon="ic_menu_mylocation" ios:visibility="collapsed"></ActionItem>
+            </ActionBar>
+
+            <StackLayout class="app-main" [ngClass]="weather.style">
+                <FlexboxLayout flexDirection="column" justifyContent="space-between" alignItems="center" height="100%">
+                    <Weather [weather]="weather" row="0"></Weather>
+                    <Forecast [forecast]="forecast" row="2"></Forecast>
+                </FlexboxLayout>
+            </StackLayout>
+        </Page>
+    </StackLayout>
+</RadSideDrawer>

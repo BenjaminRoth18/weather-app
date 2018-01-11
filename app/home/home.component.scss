@@ -8,17 +8,29 @@
 
 ActionBar {
   background: $COL_DEFAULT;
+
+  Label {
+    color: $COL_WHITE;
+    font-size: 20;
+    display: block;
+    padding: 20 10;
+
+    &.btn-menu {
+      padding-left: 0;
+    }
+
+    &.btn-refresh {
+      padding-right: 0;
+    }
+  }
 }
 
 SearchBar {
   background: $COL_WHITE;
 }
 
-Label {
-  color: $COL_WHITE;
-  font-size: 20;
-  display: block;
-  padding: 20 10;
+.drawer {
+  background: $COL_BLACK;
 }
 
 .default {
@@ -48,5 +60,3 @@ Label {
 .snow {
   background: $COL_SNOW;
 }
-
-

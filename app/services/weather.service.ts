@@ -19,6 +19,7 @@ export class WeatherService {
     latitude: number;
     longitude: number;
     location: string;
+    locationHistory: string[] = [];
 
     stateSubject: BehaviorSubject<State>;
 
@@ -32,7 +33,8 @@ export class WeatherService {
             day4: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
             day5: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
             day6: new ForecastItem(new Date(), 40 , 4, 'clear-day'),
-        }
+        },
+        locations: []
     };
 
     constructor(private settingsService: SettingsService) {}
@@ -150,6 +152,20 @@ export class WeatherService {
                 this.getLocation();
                 this.getWeatherData();
             });
+    }
+
+    addLocations(location) {
+        this.locationHistory.push(location);
+
+        if (this.locationHistory.length > 10) {
+            this.locationHistory.shift();
+        }
+
+        this.state = Object.assign({}, this.state, {
+            locations: this.locationHistory
+        });
+
+        this.stateSubject.next(this.state);
     }
 
     getState(): BehaviorSubject<State> {
