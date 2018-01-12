@@ -4,7 +4,7 @@ export interface State {
     loader: any;
     weather: WeatherModel;
     forecast: Forecast;
-    locations: string[];
+    locations: Array<string>;
 }
 
 export interface Forecast {

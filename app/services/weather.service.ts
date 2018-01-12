@@ -19,7 +19,7 @@ export class WeatherService {
     latitude: number;
     longitude: number;
     location: string;
-    locationHistory: string[] = [];
+    locationHistory: Array<any> = [];
 
     stateSubject: BehaviorSubject<State>;
 
@@ -108,7 +108,6 @@ export class WeatherService {
 
                     this.stateSubject.next(this.state);
                     ApplicationSettings.setString('data', JSON.stringify(this.state));
-                    // this.hideLoader();
                     this.loader(false);
                 });
         }
@@ -155,14 +154,16 @@ export class WeatherService {
     }
 
     addLocations(location) {
-        this.locationHistory.push(location);
+        if (!this.state.locations.includes(location)) {
+            this.locationHistory.push(location);
+        }
 
         if (this.locationHistory.length > 10) {
             this.locationHistory.shift();
         }
 
         this.state = Object.assign({}, this.state, {
-            locations: this.locationHistory
+            locations: this.locationHistory.reverse()
         });
 
         this.stateSubject.next(this.state);
