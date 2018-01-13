@@ -10,6 +10,7 @@ import { LoaderOptions } from '../shared/loader';
 
 import { RadSideDrawerComponent } from "nativescript-pro-ui/sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
+import { SearchBar } from 'tns-core-modules/ui/search-bar';
 
 const loader = new LoadingIndicator();
 
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         day6: ForecastItem
     };
     locations: string[];
+    searchBarStatus: boolean = true;
 
     ngOnInit() {
         enableLocationRequest().then(() => {
@@ -80,5 +82,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     onRefresh() {
         this.weatherService.setLocation(encodeURI(this.weather.location));
+    }
+
+    checkSearchBar() {
+        this.searchBarStatus = false;
+    }
+
+    onDismissKeyboard() {
+        const searchBar = <SearchBar>this.page.getViewById('addLocation');
+        searchBar.dismissSoftInput();
+        this.searchBarStatus = true;
     }
 }

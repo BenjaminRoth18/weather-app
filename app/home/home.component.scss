@@ -60,3 +60,17 @@ SearchBar {
 .snow {
   background: $COL_SNOW;
 }
+
+.active-search {
+  background: red;
+
+  .ai-location,
+  .ai-refresh {
+    visibility: collapse;
+  }
+}
+
+.not-active-seach {
+  background: pink;
+}
+
