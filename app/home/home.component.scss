@@ -2,8 +2,12 @@
 @import '../global';
 
 .app-main {
+  background: $COL_BLACK;
+}
+
+.app-content {
   background: $COL_DEFAULT;
-  padding: 40 20 20 20;
+  padding: 30 20 20 20;
 }
 
 ActionBar {
@@ -21,6 +25,11 @@ ActionBar {
 
     &.btn-refresh {
       padding-right: 0;
+    }
+
+    &.btn-dismiss-keyboard {
+      font-size: 12;
+      padding: 20 5;
     }
   }
 }
@@ -59,18 +68,5 @@ SearchBar {
 
 .snow {
   background: $COL_SNOW;
-}
-
-.active-search {
-  background: red;
-
-  .ai-location,
-  .ai-refresh {
-    visibility: collapse;
-  }
-}
-
-.not-active-seach {
-  background: pink;
 }
 

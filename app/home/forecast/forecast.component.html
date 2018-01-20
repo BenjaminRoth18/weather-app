@@ -1,3 +1,5 @@
-<SegmentedBar [items]="myItems" selectedIndex="0" (selectedIndexChange)="onSelectedIndexChange($event)"></SegmentedBar>
-<Hours [forecast]="forecast" *ngIf="visibility1" row="2"></Hours>
-<Days [forecast]="forecast" *ngIf="visibility2" row="2"></Days>
+<StackLayout>
+    <SegmentedBar [items]="myItems" selectedIndex="0" (selectedIndexChange)="onSelectedIndexChange($event)"></SegmentedBar>
+    <Hours [forecast]="forecast" *ngIf="visibility1" row="2"></Hours>
+    <Days [forecast]="forecast" *ngIf="visibility2" row="2"></Days>
+</StackLayout>

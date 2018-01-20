@@ -64,12 +64,12 @@ export class WeatherService {
     }
 
     getWeatherData() {
-        // const queryURL = 'https://api.darksky.net/forecast/' + DARKSKY_API_KEY + '/' + this.latitude + ',' + this.longitude + '?units=si';
+        const queryURL = 'https://api.darksky.net/forecast/' + DARKSKY_API_KEY + '/' + this.latitude + ',' + this.longitude + '?units=si';
 
         if (ApplicationSettings.hasKey('data')) {
             this.stateSubject.next(JSON.parse(ApplicationSettings.getString('data')));
         } else {
-            http.getJSON('https://api.myjson.com/bins/1da7w3') // https://api.myjson.com/bins/1da7w3
+            http.getJSON(queryURL) // https://api.myjson.com/bins/1da7w3
                 .then((response) => {
                     this.state = Object.assign({}, this.state, {
                         weather: new WeatherModel(
@@ -214,6 +214,4 @@ export class WeatherService {
         }
         return this.stateSubject;
     }
-
-
 }

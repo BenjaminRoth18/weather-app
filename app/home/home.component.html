@@ -2,13 +2,13 @@
     <StackLayout tkDrawerContent class="drawer">
         <SidebarDrawer [drawer]="drawer" [locations]="locations"></SidebarDrawer>
     </StackLayout>
-    <StackLayout tkMainContent>
+    <StackLayout tkMainContent class="app-main">
         <Page *ngIf="weather.active" xmlns:android="" xmlns:ios="">
             <ActionBar [ngClass]="weather.style">
                 <ActionItem (tap)="openDrawer()" ios.position="left" android:visibility="collapsed" *ngIf="locations.length > 0 && searchBarStatus">
                     <Label [text]="'fa-bars' | fonticon" class="fa btn-menu"></Label>
                 </ActionItem>
-                <SearchBar hint="Search location" id="addLocation" (submit)="onAddLocation($event)" (tap)="checkSearchBar()"></SearchBar>
+                <SearchBar hint="Search location" id="addLocation" (submit)="onAddLocation($event)" (tap)="checkSearchBar()" (textChange)="checkSearchBar()"></SearchBar>
                 <ActionItem (tap)="onSetCurrentLocation()" ios.position="right" android:visibility="collapsed" class="ai-location" *ngIf="searchBarStatus">
                     <Label [text]="'fa-map-marker' | fonticon" class="fa btn-location"></Label>
                 </ActionItem>
@@ -16,14 +16,15 @@
                     <Label [text]="'fa-refresh' | fonticon" class="fa btn-refresh"></Label>
                 </ActionItem>
                 <ActionItem (tap)="onDismissKeyboard()" ios.position="right" android:visibility="collapsed" *ngIf="!searchBarStatus" class="ai-dismiss-keyboard">
-                    <Label [text]="'fa-keyboard-o' | fonticon" class="fa btn-dismiss-keyboard"></Label>
+                    <!--Label [text]="'fa-keyboard-o' | fonticon" class="fa btn-dismiss-keyboard"></Label-->
+                    <Label text="abbrechen" class="btn-dismiss-keyboard"></Label>
                 </ActionItem>
                 <ActionItem (tap)="onSetCurrentLocation()" android.systemIcon="ic_menu_mylocation" ios:visibility="collapsed"></ActionItem>
             </ActionBar>
 
-            <StackLayout class="app-main" [ngClass]="weather.style">
+            <StackLayout class="app-content" [ngClass]="weather.style">
                 <FlexboxLayout flexDirection="column" justifyContent="space-between" alignItems="center" height="100%">
-                    <Weather [weather]="weather" row="0"></Weather>
+                    <Weather [weather]="weather"></Weather>
                     <Forecast [forecast]="forecast"></Forecast>
                 </FlexboxLayout>
             </StackLayout>

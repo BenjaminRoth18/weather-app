@@ -25,7 +25,7 @@ export class ForecastComponent {
         this.myItems.push(forecastHourly, forecastWeekly);
     }
 
-    public onSelectedIndexChange(args) {
+    onSelectedIndexChange(args) {
         const segmentedBar = <SegmentedBar>args.object;
         const selectedIndex = segmentedBar.selectedIndex;
 
