@@ -12,11 +12,19 @@ export class WeatherModel {
     ) {}
 }
 
-export class ForecastItem {
+export class ForecastDay {
     constructor(
         public day: any,
         public temperatureHigh: number,
         public temperatureLow: number,
+        public icon: string
+    ) {}
+}
+
+export class ForecastHour {
+    constructor(
+        public hour: any,
+        public temperature: number,
         public icon: string
     ) {}
 }

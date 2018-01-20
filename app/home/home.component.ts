@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from "
 import { Page } from "ui/page";
 import { TextField } from "ui/text-field";
 import { WeatherService } from '../services/weather.service';
-import { ForecastItem, WeatherModel } from '../model/weather.model';
+import { WeatherModel, ForecastDay, ForecastHour } from '../model/weather.model';
 import * as ApplicationSettings from 'application-settings';
 import { enableLocationRequest } from "nativescript-geolocation";
 import { LoadingIndicator } from 'nativescript-loading-indicator';
@@ -11,6 +11,7 @@ import { LoaderOptions } from '../shared/loader';
 import { RadSideDrawerComponent } from "nativescript-pro-ui/sidedrawer/angular";
 import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 import { SearchBar } from 'tns-core-modules/ui/search-bar';
+import { Forecast } from "../model/state.model";
 
 const loader = new LoadingIndicator();
 
@@ -21,6 +22,7 @@ const loader = new LoadingIndicator();
     styleUrls: ['home.component.css']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+
     constructor(private weatherService: WeatherService,
                 private page: Page,
                 private _changeDetectionRef: ChangeDetectorRef
@@ -35,14 +37,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
 
     weather: WeatherModel;
-    forecast: {
-        day1: ForecastItem,
-        day2: ForecastItem,
-        day3: ForecastItem,
-        day4: ForecastItem,
-        day5: ForecastItem,
-        day6: ForecastItem
-    };
+    forecast: Forecast;
     locations: string[];
     searchBarStatus: boolean = true;
 
@@ -56,7 +51,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.weatherService.getState().subscribe(state => {
             this.weather = state.weather;
             this.forecast = state.forecast;
-            this.locations = state.locations
+            this.locations = state.locations;
 
             if(state.loader === true) {
                 loader.show(LoaderOptions);

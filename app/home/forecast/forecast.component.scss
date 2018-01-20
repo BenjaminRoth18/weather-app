@@ -1,17 +1,9 @@
 @import '../../colors';
-@import '../../global';
 
-Label {
-  color: $COL_WHITE;
-  font-size: 20;
-  padding: 5 0;
+SegmentedBar {
+  background: transparent;
+  font-size: 18;
+  selected-background-color: rgba(255,255,255,1);
+  width: 100%;
 
-  &.icon {
-    margin-right: 20;
-  }
-
-  &.temperature {
-    text-align: right;
-  }
 }
-

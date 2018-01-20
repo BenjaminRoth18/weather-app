@@ -1,0 +1,17 @@
+@import '../../../colors';
+@import '../../../global';
+
+Label {
+  color: $COL_WHITE;
+  font-size: 20;
+  padding: 5 0;
+
+  &.icon {
+    margin-right: 20;
+  }
+
+  &.temperature {
+    text-align: right;
+  }
+}
+

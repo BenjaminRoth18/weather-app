@@ -1,4 +1,4 @@
-import { ForecastItem, WeatherModel } from './weather.model';
+import { ForecastDay, ForecastHour, WeatherModel } from './weather.model';
 
 export interface State {
     loader: any;
@@ -8,10 +8,24 @@ export interface State {
 }
 
 export interface Forecast {
-    day1: ForecastItem,
-    day2: ForecastItem,
-    day3: ForecastItem,
-    day4: ForecastItem,
-    day5: ForecastItem,
-    day6: ForecastItem
+    hours: ForecastHours,
+    days: ForecastDays
+}
+
+export interface ForecastHours {
+    hour1: ForecastHour,
+    hour2: ForecastHour,
+    hour3: ForecastHour,
+    hour4: ForecastHour,
+    hour5: ForecastHour,
+    hour6: ForecastHour
+}
+
+export interface ForecastDays {
+    day1: ForecastDay,
+    day2: ForecastDay,
+    day3: ForecastDay,
+    day4: ForecastDay,
+    day5: ForecastDay,
+    day6: ForecastDay
 }

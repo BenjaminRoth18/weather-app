@@ -1,0 +1,25 @@
+<GridLayout columns="180, auto, *" rows="auto,auto,auto,auto,auto,auto">
+    <Label [text]="forecast?.hours.hour1.hour" col="0" row="0" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.hours.hour1.icon | fonticon" col="1" row="0" [class]="'wi icon ' + forecast?.hours.hour1.icon"></Label>
+    <Label [text]="forecast?.hours.hour1.temperature + '&deg;C'" col="2" row="0" class="temperature"></Label>
+
+    <Label [text]="forecast?.hours.hour2.hour" col="0" row="1" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.hours.hour2.icon | fonticon" col="1" row="1" [class]="'wi icon ' + forecast?.hours.hour2.icon"></Label>
+    <Label [text]="forecast?.hours.hour2.temperature + '&deg;C'" col="2" row="1" class="temperature"></Label>
+
+    <Label [text]="forecast?.hours.hour3.hour" col="0" row="2" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.hours.hour3.icon | fonticon" col="1" row="2" [class]="'wi icon ' + forecast?.hours.hour3.icon"></Label>
+    <Label [text]="forecast?.hours.hour3.temperature + '&deg;C'" col="2" row="2" class="temperature"></Label>
+
+    <Label [text]="forecast?.hours.hour4.hour" col="0" row="3" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.hours.hour4.icon | fonticon" col="1" row="3" [class]="'wi icon ' + forecast?.hours.hour4.icon"></Label>
+    <Label [text]="forecast?.hours.hour4.temperature + '&deg;C'" col="2" row="3" class="temperature"></Label>
+
+    <Label [text]="forecast?.hours.hour5.hour" col="0" row="4" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.hours.hour5.icon | fonticon" col="1" row="4" [class]="'wi icon ' + forecast?.hours.hour5.icon"></Label>
+    <Label [text]="forecast?.hours.hour5.temperature + '&deg;C'" col="2" row="4" class="temperature"></Label>
+
+    <Label [text]="forecast?.hours.hour6.hour" col="0" row="5" class="day"></Label>
+    <Label [text]="'wi-forecast-io-' + forecast?.hours.hour6.icon | fonticon" col="1" row="5" [class]="'wi icon ' + forecast?.hours.hour6.icon"></Label>
+    <Label [text]="forecast?.hours.hour6.temperature + '&deg;C'" col="2" row="5" class="temperature"></Label>
+</GridLayout>

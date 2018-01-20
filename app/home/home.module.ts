@@ -11,6 +11,8 @@ import { SidebarDrawerComponent } from './drawer/sidebar-drawer.component';
 import { HomeComponent } from './home.component';
 import { WeatherComponent } from './weather/weather.component';
 import { ForecastComponent } from './forecast/forecast.component';
+import { DaysComponent } from './forecast/days/days.component';
+import { HoursComponent } from './forecast/hours/hours.component';
 
 import { NativeScriptUISideDrawerModule } from 'nativescript-pro-ui/sidedrawer/angular';
 
@@ -29,7 +31,9 @@ import { NativeScriptUISideDrawerModule } from 'nativescript-pro-ui/sidedrawer/a
         SidebarDrawerComponent,
         HomeComponent,
         WeatherComponent,
-        ForecastComponent
+        ForecastComponent,
+        DaysComponent,
+        HoursComponent
     ],
     schemas: [
         NO_ERRORS_SCHEMA
