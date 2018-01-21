@@ -20,7 +20,7 @@ I was working with NativeScript the last few weeks and finally decided to create
 
 
 ## Setup
-This app is developed with NativeScript/Angular for iOS. All code and interfaces are created by myself.
+This app is developed with NativeScript/Angular for iOS. Code and interfaces are developed by myself.
 
 
 ## Install
