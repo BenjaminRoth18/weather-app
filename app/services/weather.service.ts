@@ -202,7 +202,7 @@ export class WeatherService {
         }
 
         this.state = Object.assign({}, this.state, {
-            locations: this.locationHistory.reverse()
+            locations: this.locationHistory
         });
 
         this.stateSubject.next(this.state);

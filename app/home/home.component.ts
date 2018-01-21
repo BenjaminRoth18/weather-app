@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     weather: WeatherModel;
     forecast: Forecast;
-    locations: string[];
+    locations: Array<string>;
     searchBarStatus: boolean = true;
 
     ngOnInit() {
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         this.weatherService.getState().subscribe(state => {
             this.weather = state.weather;
             this.forecast = state.forecast;
-            this.locations = state.locations;
+            this.locations = state.locations.reverse();
             this.searchBarStatus = true;
 
             if(state.loader === true) {
