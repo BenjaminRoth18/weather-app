@@ -13,6 +13,7 @@ I was working with NativeScript the last few weeks and finally decided to create
 * Weather layouts with colors
 * Your last search results
 * RadSideDrawer integration
+* Application settings storage
 
 ## Screenshot
 ![NativeScript Weather App](app/screenshot.png)
