@@ -15,7 +15,7 @@ I was working with NativeScript the last few weeks and finally decided to create
 * RadSideDrawer integration
 
 ## Screenshot
-![NativeScript Weather App](https://raw.githubusercontent.com/BenjaminRoth18/weather-app/master/app/screenshot.png)
+![NativeScript Weather App](app/screenshot.png)
 
 
 ## Setup
