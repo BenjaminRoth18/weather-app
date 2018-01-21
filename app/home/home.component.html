@@ -17,7 +17,7 @@
                 </ActionItem>
                 <ActionItem (tap)="onDismissKeyboard()" ios.position="right" android:visibility="collapsed" *ngIf="!searchBarStatus" class="ai-dismiss-keyboard">
                     <!--Label [text]="'fa-keyboard-o' | fonticon" class="fa btn-dismiss-keyboard"></Label-->
-                    <Label text="abbrechen" class="btn-dismiss-keyboard"></Label>
+                    <Label text="cancel" class="btn-dismiss-keyboard"></Label>
                 </ActionItem>
                 <ActionItem (tap)="onSetCurrentLocation()" android.systemIcon="ic_menu_mylocation" ios:visibility="collapsed"></ActionItem>
             </ActionBar>
