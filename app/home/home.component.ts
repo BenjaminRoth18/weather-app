@@ -1,15 +1,15 @@
-import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from "@angular/core";
-import { Page } from "ui/page";
-import { TextField } from "ui/text-field";
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Page } from 'ui/page';
+import { TextField } from 'ui/text-field';
 import { WeatherService } from '../services/weather.service';
 import { WeatherModel } from '../model/weather.model';
-import { Forecast } from "../model/state.model";
+import { Forecast } from '../model/state.model';
 import * as ApplicationSettings from 'application-settings';
-import { enableLocationRequest } from "nativescript-geolocation";
+import { enableLocationRequest } from 'nativescript-geolocation';
 import { LoadingIndicator } from 'nativescript-loading-indicator';
 import { LoaderOptions } from '../shared/loader';
 
-import { RadSideDrawerComponent } from "nativescript-pro-ui/sidedrawer/angular";
+import { RadSideDrawerComponent } from 'nativescript-pro-ui/sidedrawer/angular';
 import { RadSideDrawer } from 'nativescript-pro-ui/sidedrawer';
 import { SearchBar } from 'tns-core-modules/ui/search-bar';
 

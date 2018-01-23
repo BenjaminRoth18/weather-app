@@ -1,20 +1,18 @@
-import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
-import { NativeScriptCommonModule } from "nativescript-angular/common";
-import { NativeScriptFormsModule } from "nativescript-angular/forms"
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NativeScriptCommonModule } from 'nativescript-angular/common';
+import { NativeScriptFormsModule } from 'nativescript-angular/forms'
 import { Http } from '@angular/http';
-
-import { HomeRoutingModule } from "./home-routing.module";
-
+import { HomeRoutingModule } from './home-routing.module';
 import { TNSFontIconModule } from 'nativescript-ngx-fonticon';
-
 import { SidebarDrawerComponent } from './drawer/sidebar-drawer.component';
 import { HomeComponent } from './home.component';
 import { WeatherComponent } from './weather/weather.component';
 import { ForecastComponent } from './forecast/forecast.component';
 import { DaysComponent } from './forecast/days/days.component';
 import { HoursComponent } from './forecast/hours/hours.component';
-
 import { NativeScriptUISideDrawerModule } from 'nativescript-pro-ui/sidedrawer/angular';
+import { WeatherService } from '../services/weather.service';
+import { SettingsService } from '../services/settings.service';
 
 @NgModule({
     imports: [
@@ -34,6 +32,10 @@ import { NativeScriptUISideDrawerModule } from 'nativescript-pro-ui/sidedrawer/a
         ForecastComponent,
         DaysComponent,
         HoursComponent
+    ],
+    providers: [
+        WeatherService,
+        SettingsService,
     ],
     schemas: [
         NO_ERRORS_SCHEMA
