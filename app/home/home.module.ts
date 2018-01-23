@@ -13,6 +13,7 @@ import { HoursComponent } from './forecast/hours/hours.component';
 import { NativeScriptUISideDrawerModule } from 'nativescript-pro-ui/sidedrawer/angular';
 import { WeatherService } from '../services/weather.service';
 import { SettingsService } from '../services/settings.service';
+import { CreatorService } from '../services/creator.service';
 
 @NgModule({
     imports: [
@@ -36,6 +37,7 @@ import { SettingsService } from '../services/settings.service';
     providers: [
         WeatherService,
         SettingsService,
+        CreatorService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
