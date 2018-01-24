@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WeatherModel } from '../../model/weather.model';
+import { WeatherModel } from '../../shared/model/weather.model';
 
 @Component({
     selector: "Weather",

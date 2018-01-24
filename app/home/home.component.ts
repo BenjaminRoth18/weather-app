@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '
 import { Page } from 'ui/page';
 import { TextField } from 'ui/text-field';
 import { WeatherService } from '../services/weather.service';
-import { WeatherModel } from '../model/weather.model';
-import { Forecast } from '../model/state.model';
+import { WeatherModel } from '../shared/model/weather.model';
+import { Forecast } from '../shared/model/state.model';
 import * as ApplicationSettings from 'application-settings';
 import { enableLocationRequest } from 'nativescript-geolocation';
 import { LoadingIndicator } from 'nativescript-loading-indicator';

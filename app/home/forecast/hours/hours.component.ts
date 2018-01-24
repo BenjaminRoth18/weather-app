@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Forecast } from '../../../model/state.model';
+import { Forecast } from '../../../shared/model/state.model';
 
 @Component({
     selector: "Hours",

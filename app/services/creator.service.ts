@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SettingsService } from './settings.service';
-import { WeatherModel, ForecastDay, ForecastHour } from '../model/weather.model';
+import { WeatherModel, ForecastDay, ForecastHour } from '../shared/model/weather.model';
 import moment = require('moment-timezone');
 
 @Injectable()

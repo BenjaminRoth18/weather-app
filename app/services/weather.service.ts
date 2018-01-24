@@ -1,5 +1,5 @@
-import { WeatherModel, ForecastDay, ForecastHour } from '../model/weather.model';
-import { State } from '../model/state.model';
+import { WeatherModel, ForecastDay, ForecastHour } from '../shared/model/weather.model';
+import { State } from '../shared/model/state.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as ApplicationSettings from 'application-settings'
 import { getCurrentLocation } from 'nativescript-geolocation';
