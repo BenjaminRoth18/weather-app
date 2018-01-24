@@ -31,6 +31,6 @@ This app is developed with NativeScript/Angular for iOS. Code and interfaces are
 ```npm install```
 
 
-## Run
+### Run
 
 ```tns run ios``` or ```tns run ios --emulator```
